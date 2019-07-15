@@ -1,0 +1,40 @@
+body,
+p,
+ul,ol,dl,
+h1,h2,h3,h4,h5,h6,
+input,
+img{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    // 取消移动端上有事件监听的元素被点击的时候会被高亮显示
+    -webkit-tap-highlight-color: transparent;
+}
+ul{
+    list-style: none;
+}
+img{
+    border: none;
+}
+input{
+    outline: none;
+    border: none;
+}
+.clearfix::before,.clearfix::after{
+    display: table;
+    content:''
+}
+.clearfix::after{
+    clear: both;
+}
+.clearfix{
+    zoom: 1
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
