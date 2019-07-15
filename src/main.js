@@ -3,12 +3,14 @@ import App from './App.vue'
 
 // 导入组件
 import login from './components/login.vue'
+import index from './components/index.vue'
 
 // 导入vue路由
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 const routes = [
-  {path:'/login',component:login}
+  {path:'/login',component:login},
+  {path:'/index',component:index},
 ]
 const router = new VueRouter({
   routes
