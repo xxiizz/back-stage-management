@@ -4,10 +4,10 @@
       <h2>用户登录</h2>
       <el-form :label-position="'top'" label-width="80px" :model="formData" :rules="rules" :status-icon="true">
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="formData.username"></el-input>
+          <el-input v-model="formData.username" class="elinput"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="formData.password" type='password'></el-input>
+          <el-input v-model="formData.password" type='password' class="elinput"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" id="btn">登录</el-button>
@@ -70,7 +70,9 @@ export default {
       width: 100%;
     }
     .is-success{
-        border-color: greenyellow;
+        .elinput{
+          outline: 1px solid #67c23a;
+        }
     }
   }
 }
