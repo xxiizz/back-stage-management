@@ -8,7 +8,7 @@
         <h2>有赞后台管理页面</h2>
       </el-col>
       <el-col :span="1">
-        <a href="#">退出</a>
+        <a href="#" @click.prevent="logout">退出</a>
       </el-col>
     </el-header>
     <el-container>
@@ -56,7 +56,33 @@
 
 <script>
 export default {
-    name:'index'
+  name: "index",
+  data() {
+    return {};
+  },
+  methods: {
+    logout() {
+      this.$confirm("确定要退出吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "info "
+      })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "退出成功!"
+          })
+          this.$router.push('/login')
+          window.localStorage.removeItem('token')
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "请继续使用"
+          });
+        });
+    }
+  }
 };
 </script>
 
