@@ -53,7 +53,7 @@ export default {
         if (vaild) {
           login(this.formData.username, this.formData.password).then(
             backData => {
-              console.log(backData);
+              // console.log(backData);
               if(backData.data.meta.status==400){
                 this.$message.error(backData.data.meta.msg)
               }

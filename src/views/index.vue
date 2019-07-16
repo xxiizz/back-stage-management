@@ -13,14 +13,19 @@
     </el-header>
     <el-container>
       <el-aside width="200px" class="aside">
-        <el-menu  class="el-menu-vertical-demo" :unique-opened="true">
-          <el-submenu :index="item.order.toString()" v-for='item in menus'>
+        <el-menu class="el-menu-vertical-demo" :unique-opened="true" :router="true">
+          <el-submenu :index="item.order.toString()" v-for="item in menus">
             <template slot="title">
               <i class="el-icon-s-home"></i>
               <span>{{item.authName}}</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item :index="item.order+'-'+(index+1)" v-for="(childItem, index) in item.children" :key="index">
+              <el-menu-item
+                :index="'/index/'+childItem.path"
+                v-for="(childItem, index) in item.children"
+                :key="index"
+                
+              >
                 <i class="el-icon-menu"></i>
                 {{childItem.authName}}
               </el-menu-item>
@@ -41,7 +46,7 @@
                 选项1
               </el-menu-item>
             </el-menu-item-group>
-          </el-submenu> -->
+          </el-submenu>-->
         </el-menu>
       </el-aside>
 
@@ -51,12 +56,12 @@
 </template>
 
 <script>
-import {menus} from '../api/api'
+import { menus } from "../api/api";
 export default {
   name: "index",
   data() {
     return {
-      menus:[]
+      menus: []
     };
   },
   methods: {
@@ -70,9 +75,9 @@ export default {
           this.$message({
             type: "success",
             message: "退出成功!"
-          })
-          this.$router.push('/login')
-          window.localStorage.removeItem('token')
+          });
+          this.$router.push("/login");
+          window.localStorage.removeItem("token");
         })
         .catch(() => {
           this.$message({
@@ -80,16 +85,16 @@ export default {
             message: "请继续使用"
           });
         });
-    },
+    }
   },
   created() {
-    menus().then(backData=>{
-      console.log(backData);
-      if(backData.status==200){
-        this.menus = backData.data.data
+    menus().then(backData => {
+      // console.log(backData);
+      if (backData.status == 200) {
+        this.menus = backData.data.data;
       }
-    })
-  },
+    });
+  }
 };
 </script>
 
