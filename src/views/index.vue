@@ -13,8 +13,20 @@
     </el-header>
     <el-container>
       <el-aside width="200px" class="aside">
-        <el-menu default-active="2" class="el-menu-vertical-demo" :unique-opened="true">
-          <el-submenu index="1">
+        <el-menu  class="el-menu-vertical-demo" :unique-opened="true">
+          <el-submenu :index="item.order.toString()" v-for='item in menus'>
+            <template slot="title">
+              <i class="el-icon-s-home"></i>
+              <span>{{item.authName}}</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item :index="item.order+'-'+(index+1)" v-for="(childItem, index) in item.children" :key="index">
+                <i class="el-icon-menu"></i>
+                {{childItem.authName}}
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <!-- <el-submenu index="2">
             <template slot="title">
               <i class="el-icon-s-home"></i>
               <span>导航一</span>
@@ -29,23 +41,7 @@
                 选项1
               </el-menu-item>
             </el-menu-item-group>
-          </el-submenu>
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-s-home"></i>
-              <span>导航一</span>
-            </template>
-            <el-menu-item-group>
-              <el-menu-item index="1-1">
-                <i class="el-icon-menu"></i>
-                选项1
-              </el-menu-item>
-              <el-menu-item index="1-2">
-                <i class="el-icon-menu"></i>
-                选项1
-              </el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
+          </el-submenu> -->
         </el-menu>
       </el-aside>
 
@@ -55,10 +51,13 @@
 </template>
 
 <script>
+import {menus} from '../api/api'
 export default {
   name: "index",
   data() {
-    return {};
+    return {
+      menus:[]
+    };
   },
   methods: {
     logout() {
@@ -81,8 +80,16 @@ export default {
             message: "请继续使用"
           });
         });
-    }
-  }
+    },
+  },
+  created() {
+    menus().then(backData=>{
+      console.log(backData);
+      if(backData.status==200){
+        this.menus = backData.data.data
+      }
+    })
+  },
 };
 </script>
 
