@@ -37,6 +37,7 @@
 
 <script>
 export default {
+  name:'goods',
   data() {
     return {
       inputVal: "",

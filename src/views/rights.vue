@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name:'rights',
   data() {
     return {
       inputVal: "",

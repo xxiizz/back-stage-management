@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  name:'roles',
   data() {
     return {
       inputVal: "",

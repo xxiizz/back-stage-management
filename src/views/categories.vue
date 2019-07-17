@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  name:'categories',
   data() {
     return {
       inputVal: "",

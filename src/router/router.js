@@ -4,11 +4,12 @@ import login from "../views/login.vue";
 import index from "../views/index.vue";
 import notfound from "../views/notfound.vue";
 import users from "../views/users.vue";
-import roles from '../views/roles.vue'
-import rights from '../views/rights.vue'
-import goods from '../views/goods.vue'
-import categories from '../views/categories.vue'
-import orders from '../views/orders.vue'
+import roles from "../views/roles.vue";
+import rights from "../views/rights.vue";
+import goods from "../views/goods.vue";
+import categories from "../views/categories.vue";
+import orders from "../views/orders.vue";
+import params from "../views/params.vue";
 
 // 导入vue路由
 import VueRouter from "vue-router";
@@ -26,6 +27,7 @@ const routes = [
       { path: "goods", component: goods },
       { path: "categories", component: categories },
       { path: "orders", component: orders },
+      { path: "params", component: params }
     ]
   },
   { path: "/notfound", component: notfound },
