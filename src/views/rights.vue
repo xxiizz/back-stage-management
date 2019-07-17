@@ -1,10 +1,7 @@
 <template>
   <div>
     <!-- 面包屑导航 -->
-    <breadNav item1="权限管理" item2="角色列表"></breadNav>
-
-    <!-- 按钮 -->
-    <el-button type="success" plain>添加角色</el-button>
+    <breadNav item1="权限管理" item2="权限列表"></breadNav>
 
     <!-- 表格 -->
     <el-table :data="tableData" border style="width: 100%">
@@ -48,6 +45,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 </style>
 
