@@ -45,9 +45,5 @@ export const login = (username, password) => {
 
 // 左侧菜单获取
 export const menus = () => {
-  return http.get("menus", {
-    headers: {
-      Authorization: window.localStorage.getItem("token")
-    }
-  });
+  return http.get("menus");
 };

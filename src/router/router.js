@@ -10,6 +10,7 @@ import goods from "../views/goods.vue";
 import categories from "../views/categories.vue";
 import orders from "../views/orders.vue";
 import params from "../views/params.vue";
+import reports from "../views/reports.vue";
 
 // 导入vue路由
 import VueRouter from "vue-router";
@@ -21,15 +22,21 @@ const routes = [
     component: index,
     meta: { requireLogin: true },
     children: [
-      { path: "users", component: users },
-      { path: "roles", component: roles },
-      { path: "rights", component: rights },
-      { path: "goods", component: goods },
-      { path: "categories", component: categories },
-      { path: "orders", component: orders },
-      { path: "params", component: params }
+      { path: "users", component: users, meta: { requireLogin: true } },
+      { path: "roles", component: roles, meta: { requireLogin: true } },
+      { path: "rights", component: rights, meta: { requireLogin: true } },
+      { path: "goods", component: goods, meta: { requireLogin: true } },
+      {
+        path: "categories",
+        component: categories,
+        meta: { requireLogin: true }
+      },
+      { path: "orders", component: orders, meta: { requireLogin: true } },
+      { path: "params", component: params, meta: { requireLogin: true } },
+      { path: "reports", component: reports, meta: { requireLogin: true } }
     ]
   },
+  {path:'/',redirect:'/index'},
   { path: "/notfound", component: notfound },
   { path: "*", redirect: "/notfound" }
 ];
