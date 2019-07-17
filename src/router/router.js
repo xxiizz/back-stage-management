@@ -8,6 +8,7 @@ import roles from '../views/roles.vue'
 import rights from '../views/rights.vue'
 import goods from '../views/goods.vue'
 import categories from '../views/categories.vue'
+import orders from '../views/orders.vue'
 
 // 导入vue路由
 import VueRouter from "vue-router";
@@ -24,6 +25,7 @@ const routes = [
       { path: "rights", component: rights },
       { path: "goods", component: goods },
       { path: "categories", component: categories },
+      { path: "orders", component: orders },
     ]
   },
   { path: "/notfound", component: notfound },
