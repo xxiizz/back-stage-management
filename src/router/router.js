@@ -3,13 +3,19 @@ import Vue from "vue";
 import login from "../views/login.vue";
 import index from "../views/index.vue";
 import notfound from "../views/notfound.vue";
+import users from "../views/users.vue";
 
 // 导入vue路由
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 const routes = [
   { path: "/login", component: login },
-  { path: "/index", component: index, meta: { requireLogin: true } },
+  {
+    path: "/index",
+    component: index,
+    meta: { requireLogin: true },
+    children: [{ path: "users", component: users }]
+  },
   { path: "/notfound", component: notfound },
   { path: "*", redirect: "/notfound" }
 ];
