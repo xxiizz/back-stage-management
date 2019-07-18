@@ -18,7 +18,8 @@
 
     <!-- tab栏 -->
     <el-tabs class="tabs" v-model="activeName">
-      <el-tab-pane label="动态参数" name="first">
+      <el-tab-pane name="first">
+        <span slot="label">动态参数</span>
         <el-button type="success" size="small" class="btn">添加动态参数</el-button>
         <!-- 表格 -->
         <el-table :data="tableData" border style="width: 100%">
@@ -355,6 +356,9 @@ export default {
 }
 .tabs{
     margin-top: 10px;
+}
+.el-tabs__active-bar{
+  background-color: red !important;
 }
 </style>
 

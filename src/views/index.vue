@@ -89,7 +89,7 @@ export default {
   },
   created() {
     menus().then(backData => {
-      console.log(backData);
+      // console.log(backData);
       if (backData.status == 200) {
         this.menus = backData.data.data;
       }
