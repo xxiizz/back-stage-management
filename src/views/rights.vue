@@ -5,42 +5,46 @@
 
     <!-- 表格 -->
     <el-table :data="tableData" border style="width: 100%">
-      <el-table-column prop="date" label="日期" width="180"></el-table-column>
-      <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-      <el-table-column prop="address" label="地址"></el-table-column>
+      <el-table-column prop="date" type='index'></el-table-column>
+      <el-table-column prop="authName" label="权限名称" width="200"></el-table-column>
+      <el-table-column prop="path" label="路径" width="200"></el-table-column>
+      <el-table-column label="层级" width="200">
+        <template slot-scope='level'>
+          {{level.row.level | lv}}
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
 
 <script>
+import {rights} from '../api/api'
 export default {
   name:'rights',
   data() {
     return {
-      inputVal: "",
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
-      ]
+      tableData: []
     };
+  },
+  created() {
+    rights().then(backData=>{
+      console.log(backData);
+      if(backData.data.meta.status==200){
+        this.tableData=backData.data.data
+      }
+    })
+  },
+  filters:{
+    lv(val){
+      switch(val){
+        case '0':
+        return '一级';
+        case '1':
+        return '二级';
+        case '2':
+        return '三级';
+      }
+    }
   }
 };
 </script>

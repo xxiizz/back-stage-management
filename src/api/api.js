@@ -64,3 +64,13 @@ export const users = (pagenum, pagesize, query) => {
 export const state = (uid,type)=>{
   return http.put(`users/${uid}/state/${type}`)
 }
+
+// 根据id查询用户信息
+export const userById = id=>{
+  return http.get(`users/${id}`)
+}
+
+// 所有权限列表
+export const rights = ()=>{
+  return http.get('rights/list')
+}
