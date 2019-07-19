@@ -74,3 +74,30 @@ export const userById = id=>{
 export const rights = ()=>{
   return http.get('rights/list')
 }
+
+// 删除单个用户
+export const deleteUser = id=>{
+  return http.delete(`users/${id}`)
+}
+
+// 新增用户
+export const addUser = ({username,password,email,mobile})=>{
+  return http.post('users',{username,password,email,mobile})
+}
+
+// 修改用户信息
+export const updatedUser = (id,email,mobile)=>{
+  return http.put(`users/${id}`,{email,mobile})
+}
+
+// 分配用户角色
+export const roleUser = (id,rid)=>{
+  return http.put(`users/${id}/role`,{
+    rid
+  })
+}
+
+// 角色列表
+export const roles = ()=>{
+  return http.get('roles')
+}
