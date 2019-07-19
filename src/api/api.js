@@ -101,3 +101,10 @@ export const roleUser = (id,rid)=>{
 export const roles = ()=>{
   return http.get('roles')
 }
+
+// 订单数据列表
+export const orders = ({query,pagenum,pagesize})=>{
+  return http.get('orders',{
+    params:{query,pagenum,pagesize}
+  })
+}

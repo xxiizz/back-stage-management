@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import moment from 'moment'
 
 // 导入饿了么UI
 import ElementUI from 'element-ui'
@@ -18,6 +19,9 @@ import router from './router/router'
 
 Vue.config.productionTip = false
 
+Vue.filter('timeFormat',data=>{
+  return moment(data).format('YYYY-MM-DD HH:mm:ss')
+})
 new Vue({
   render: h => h(App),
   router,
