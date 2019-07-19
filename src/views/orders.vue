@@ -17,11 +17,11 @@
       <el-table-column prop="is_send" label="是否发货" width="250"></el-table-column>
       <el-table-column prop="create_time" label="下单时间" width="250">
         <template slot-scope="info">
-          <span>{{info.row.create_time |  timeFormat}}</span>
+          <span>{{info.row.create_time | timeFormat}}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="250">
-        <el-button type="primary" icon="el-icon-edit" plain size="mini"></el-button>
+        <el-button type="primary" icon="el-icon-edit" plain size="mini" @click="showDialog=true"></el-button>
       </el-table-column>
     </el-table>
     <!-- 分页 -->
@@ -34,6 +34,20 @@
       @size-change="sizeChange"
       @current-change="currentChange"
     ></el-pagination>
+
+    <!-- 弹框 -->
+    <el-dialog title="修改订单地址" :visible.sync="showDialog">
+      <v-distpicker @selected='test'></v-distpicker>
+      <el-form :model="form">
+        <el-form-item label="详细地址">
+          <el-input v-model="form.location" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="showDialog = false">取 消</el-button>
+        <el-button type="primary" @click="editOrder">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -46,7 +60,12 @@ export default {
       tableData: [],
       currentPage: 1,
       pageSize: 10,
-      total: 10
+      total: 10,
+      showDialog:false,
+      form:{
+       location:'' 
+      },
+      address:{}
     };
   },
   methods: {
@@ -70,6 +89,14 @@ export default {
     currentChange(current) {
       this.currentPage = current;
       this.createOrdersList();
+    },
+    test(data){
+      this.address=data
+      console.log(data);
+    },
+    editOrder(){
+      this.showDialog = false
+      this.$message.success(`订单的地址已成功更改至${this.address.province.value}${this.address.city.value}${this.address.area.value}${this.form.location}`)
     }
   },
   created() {
@@ -79,6 +106,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.distpicker-address-wrapper{
+  margin-bottom: 20px;
+}
 .elTag {
   margin-left: 23px;
 }

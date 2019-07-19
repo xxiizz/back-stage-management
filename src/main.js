@@ -22,6 +22,9 @@ Vue.config.productionTip = false
 Vue.filter('timeFormat',data=>{
   return moment(data).format('YYYY-MM-DD HH:mm:ss')
 })
+
+import Distpicker from 'v-distpicker'
+Vue.component('v-distpicker', Distpicker)
 new Vue({
   render: h => h(App),
   router,

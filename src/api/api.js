@@ -108,3 +108,12 @@ export const orders = ({query,pagenum,pagesize})=>{
     params:{query,pagenum,pagesize}
   })
 }
+
+// 修改订单状态
+export const editOrder = orderInfo =>{
+  return http.put(`orders/${orderInfo.id}`,orderInfo)
+}
+// 商品分类数据列表
+export const categories = ()=>{
+  return http.get('categories')
+}
