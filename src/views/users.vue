@@ -117,8 +117,8 @@
     </el-dialog>
     <!-- 分配角色弹框 -->
     <el-dialog title="分配角色" :visible.sync="roleDialog">
-      <p>当前用户&nbsp;&nbsp;&nbsp;{{userInRole}}</p>
-      <span>请选择角色&nbsp;&nbsp;&nbsp;</span>
+      <p class="form">当前用户&nbsp;&nbsp;&nbsp;{{userInRole}}</p>
+      <span class="form">请选择角色&nbsp;&nbsp;&nbsp;</span>
       <el-select v-model="selectRole" placeholder="请选择">
         <el-option
           v-for="item in roleList"
@@ -190,6 +190,7 @@ export default {
       userInRole: "",
       userInRoleName: "",
       userInRoleId: "",
+      userInRoleRid:0,
       selectRole: "",
       roleList: []
     };
@@ -197,6 +198,7 @@ export default {
   methods: {
     createUserList() {
       users(this.currentPage, this.pageSize, this.inputVal).then(backData => {
+        console.log(backData);
         this.total = backData.data.data.total;
         this.tableData = backData.data.data.users;
       });
@@ -292,20 +294,23 @@ export default {
     // 修改用户角色
     updatedRole(info) {
       this.roleDialog = true;
-      this.userInRole = info.username;
-      this.userInRoleId = info.id;
-      this.userInRoleName = info.role_name;
+      userById(info.id).then(backData => {
+        console.log(backData);
+        this.userInRole = backData.data.data.username;
+        this.userInRoleId = backData.data.data.id;
+        this.userInRoleRid = backData.data.data.rid;
+      });
       roles().then(backData => {
         console.log(backData);
         if (backData.data.meta.status == 200) {
-          this.roleList = backData.data.data
+          this.roleList = backData.data.data;
           this.roleList.unshift({
-            id: "",
+            id: "-1",
             roleName: "请选择角色",
             disabled: true
           });
           for (let i = 0; i < backData.data.data.length; i++) {
-            if (this.userInRoleName == backData.data.data[i].roleName) {
+            if (this.userInRoleRid == backData.data.data[i].id) {
               this.selectRole = backData.data.data[i].id;
             }
           }
@@ -317,8 +322,8 @@ export default {
         console.log(backData);
         if (backData.data.meta.status == 200) {
           this.$message.success(backData.data.meta.msg);
-          this.roleDialog=false
-          createUserList()
+          this.roleDialog = false;
+          this.createUserList();
         }
       });
     }
@@ -332,6 +337,10 @@ export default {
 <style lang="less" scoped>
 .btn {
   margin-left: 5px;
+}
+.form {
+  margin-bottom: 20px;
+  margin-left: 20px;
 }
 </style>
 
