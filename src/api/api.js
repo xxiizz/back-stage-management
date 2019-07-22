@@ -113,7 +113,48 @@ export const orders = ({query,pagenum,pagesize})=>{
 export const editOrder = orderInfo =>{
   return http.put(`orders/${orderInfo.id}`,orderInfo)
 }
+
 // 商品分类数据列表
 export const categories = ()=>{
   return http.get('categories')
+}
+
+// 参数列表
+export const attributes = (id,sel)=>{
+  return http.get(`categories/${id[id.length-1]}/attributes`,{
+    params:{
+      sel
+    }
+  })
+}
+
+// 删除参数
+export const delAttr = (id,attrid)=>{
+  return http.delete(`categories/${id}/attributes/${attrid}`)
+}
+
+// 添加参数
+export const addAttr = (id,attr_name,attr_sel,attr_vals)=>{
+  return http.post(`categories/${id[id.length-1]}/attributes`,{
+    attr_name,attr_sel,attr_vals
+  })
+}
+
+// 编辑参数
+export const editAttr = (id,attrId,attr_sel,attr_name,attr_vals)=>{
+  return http.put(`categories/${id[id.length-1]}/attributes/${attrId}`,{
+    attr_sel,attr_name,attr_vals
+  })
+}
+
+export const addAttr1 = (id,attr_name,attr_sel,attr_vals)=>{
+  return http.post(`categories/${id}/attributes`,{
+    attr_name,attr_sel,attr_vals
+  })
+}
+
+export const editAttr1 = (id,attrId,attr_sel,attr_name,attr_vals)=>{
+  return http.put(`categories/${id}/attributes/${attrId}`,{
+    attr_sel,attr_name,attr_vals
+  })
 }
