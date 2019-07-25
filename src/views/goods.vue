@@ -12,7 +12,7 @@
       </el-col>
       <el-col :span="2">
         <!-- 按钮 -->
-        <el-button type="warning" round class="btn">添加商品</el-button>
+        <el-button type="success" round class="btn">添加商品</el-button>
       </el-col>
     </el-row>
 

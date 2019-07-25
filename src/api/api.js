@@ -97,11 +97,6 @@ export const roleUser = (id,rid)=>{
   })
 }
 
-// 角色列表
-export const roles = ()=>{
-  return http.get('roles')
-}
-
 // 订单数据列表
 export const orders = ({query,pagenum,pagesize})=>{
   return http.get('orders',{
@@ -157,4 +152,41 @@ export const editAttr1 = (id,attrId,attr_sel,attr_name,attr_vals)=>{
   return http.put(`categories/${id}/attributes/${attrId}`,{
     attr_sel,attr_name,attr_vals
   })
+}
+
+// 角色列表
+export const roles = ()=>{
+  return http.get('roles')
+}
+
+// 添加角色
+export const addRoles = ({roleName,roleDesc})=>{
+  return http.post('roles',{roleName,roleDesc})
+}
+
+// 编辑提交角色
+export const editRole = (id,{roleName,roleDesc})=>{
+  return http.put(`roles/${id}`,{roleName,roleDesc})
+}
+
+// 删除角色
+export const delRole = id=>{
+  return http.delete(`roles/${id}`)
+}
+
+// 树状权限列表
+export const treeRights = ()=>{
+  return http.get('rights/tree')
+}
+
+// 授权
+export const setRights = (roleId,rids)=>{
+  return http.post(`roles/${roleId}/rights`,{
+    rids
+  })
+}
+
+// 删除角色指定权限
+export const delRight = (roleId,rightId)=>{
+  return http.delete(`roles/${roleId}/rights/${rightId}`)
 }
